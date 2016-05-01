@@ -23,6 +23,7 @@ class Main extends Sprite
 	var inited:Bool;
 	var space:nape.space.Space;
 	var debug:ShapeDebug;
+	var useCustomDraw:Bool;
 
 	/* ENTRY POINT */
 	
@@ -48,7 +49,7 @@ class Main extends Sprite
 		space = new Space(Vec2.weak(0, 1000));
 		debug = new ShapeDebug(stage.stageWidth, stage.stageHeight, stage.color);
 		
-		setUp(true);
+		setUp(useCustomDraw = true);
 		
 		stage.addEventListener(Event.ENTER_FRAME, onFrame);
 		stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -113,7 +114,7 @@ class Main extends Sprite
 		space.clear();
 		debug.clear();
 		this.removeChildren();
-		setUp(false);
+		setUp(useCustomDraw = !useCustomDraw);
 		#if html5 untyped console.log('------------------------------------'); #end
 	}
 	
